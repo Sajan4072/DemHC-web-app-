@@ -1,0 +1,27 @@
+Collecting package metadata (repodata.json): ...working... done
+Solving environment: ...working... done
+
+## Package Plan ##
+
+  environment location: C:\Users\lenovo\Anaconda3\envs\dhc2
+
+  added / updated specs:
+    - pillow
+
+
+The following NEW packages will be INSTALLED:
+
+  freetype           pkgs/main/win-64::freetype-2.10.4-hd328e21_0
+  jpeg               pkgs/main/win-64::jpeg-9b-hb83a4c4_2
+  libpng             pkgs/main/win-64::libpng-1.6.37-h2a8f88b_0
+  libtiff            pkgs/main/win-64::libtiff-4.2.0-hd0e1b90_0
+  lz4-c              pkgs/main/win-64::lz4-c-1.9.3-h2bbff1b_1
+  olefile            pkgs/main/win-64::olefile-0.46-py36_0
+  pillow             pkgs/main/win-64::pillow-8.3.1-py36h4fa10fc_0
+  tk                 pkgs/main/win-64::tk-8.6.10-he774522_0
+  xz                 pkgs/main/win-64::xz-5.2.5-h62dcd97_0
+  zlib               pkgs/main/win-64::zlib-1.2.11-h62dcd97_4
+  zstd               pkgs/main/win-64::zstd-1.4.9-h19a0ad4_0
+
+
+Proceed ([y]/n)? Terminate batch job (Y/N)? Terminate batch job (Y/N)? 

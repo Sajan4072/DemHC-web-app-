@@ -44,8 +44,17 @@ def model_predict(img, model):
     
     return preds
 
+@app.route('/login')
+def login():
+    return render_template('login.html')
 
-@app.route('/landing', methods=['GET'])
+
+@app.route('/signup')
+def signup():
+    return render_template('signup.html')
+
+
+@app.route('/', methods=['GET'])
 def index():
     # Main page
     return render_template('index.html')

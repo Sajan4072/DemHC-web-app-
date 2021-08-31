@@ -45,7 +45,7 @@ def model_predict(img, model):
     return preds
 
 
-@app.route('/', methods=['GET'])
+@app.route('/landing', methods=['GET'])
 def index():
     # Main page
     return render_template('index.html')

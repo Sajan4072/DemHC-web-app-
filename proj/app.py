@@ -3,13 +3,14 @@ import os
 import sys
 
 # Flask
-from flask import Flask, request, render_template, Response, jsonify, url_for
+from flask import Flask, request, render_template, Response, jsonify, url_for,redirect
 from flask_sqlalchemy import SQLAlchemy 
 from flask_login import UserMixin
 from flask_wtf import FlaskForm
 from flask_wtf.recaptcha import validators
 from wtforms import StringField,PasswordField,SubmitField
 from wtforms.validators import InputRequired,Length,ValidationError
+from flask_bcrypt import Bcrypt
 
 
 
@@ -32,6 +33,7 @@ from util import base64_to_pil
 # Declare a flask app
 app = Flask(__name__)
 db=SQLAlchemy(app) #creating an db instance
+bcrypt=Bcrypt(app)
 app.config['SQLALCHEMY_DATABASE_URI']='sqlite:///database.db'
 #secret key for security of session cookie
 app.config['SECRET_KEY']='secret'
@@ -99,6 +101,15 @@ def login():
 @app.route('/signup',methods=['GET','POST'])
 def signup():
     form=RegisterForm()
+
+
+    if form.validate_on_submit():
+        hashed_password=bcrypt.generate_password_hash(form.password.data)
+        new_user=User(username=form.username.data,password=hashed_password)
+        db.session.add(new_user)
+        db.session.commit()
+        return redirect{url_for('login')}
+
     return render_template('signup.html',form=form)
 
 

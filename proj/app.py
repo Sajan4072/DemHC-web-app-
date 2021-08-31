@@ -2,7 +2,8 @@ import os
 import sys
 
 # Flask
-from flask import Flask, request, render_template, Response, jsonify
+from flask import Flask, request, render_template, Response, jsonify, url_for
+from flask_sqlalchemy import SQLAlchemy 
 #from werkzeug.utils import secure_filename
 from gevent.pywsgi import WSGIServer
 
@@ -21,6 +22,8 @@ from util import base64_to_pil
 
 # Declare a flask app
 app = Flask(__name__)
+db=SQLAlchemy(app) #creating an db instance
+app.config['SQLALCHEMY_DATABASE_URI']='sqlite;///datase.db'
 
 
 #print('Model loaded. Check http://127.0.0.1:5000/')

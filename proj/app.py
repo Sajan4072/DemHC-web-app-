@@ -4,6 +4,7 @@ import sys
 # Flask
 from flask import Flask, request, render_template, Response, jsonify, url_for
 from flask_sqlalchemy import SQLAlchemy 
+from flask_login import UserMixin
 #from werkzeug.utils import secure_filename
 from gevent.pywsgi import WSGIServer
 
@@ -23,8 +24,10 @@ from util import base64_to_pil
 # Declare a flask app
 app = Flask(__name__)
 db=SQLAlchemy(app) #creating an db instance
-app.config['SQLALCHEMY_DATABASE_URI']='sqlite;///datase.db'
-
+app.config['SQLALCHEMY_DATABASE_URI']='sqlite:///database.db'
+#secret key for security of session cookie
+app.config['SECRET_KEY']='secret'
+app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 
 #print('Model loaded. Check http://127.0.0.1:5000/')
 
@@ -46,6 +49,16 @@ def model_predict(img, model):
     preds = model.predict(x)
     
     return preds
+
+
+class User(db.Model,UserMixin):
+    id=db.Column(db.Integer,primary_key=True)
+    username=db.Column(db.String(20),nullable=False)
+    password=db.Column(db.String(80),nullable=False)
+
+
+
+
 
 @app.route('/login')
 def login():

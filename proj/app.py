@@ -6,8 +6,7 @@ import sys
 from flask import Flask, request, render_template, Response, jsonify, url_for
 from flask_sqlalchemy import SQLAlchemy 
 from flask_login import UserMixin
-from flask_wtf import wtforms
-from flask_wtf.form import FlaskForm
+from flask_wtf import FlaskForm
 from flask_wtf.recaptcha import validators
 from wtforms import StringField,PasswordField,SubmitField
 from wtforms.validators import InputRequired,Length,ValidationError

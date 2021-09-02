@@ -123,7 +123,8 @@ def signup():
     return render_template('signup.html',form=form)
 
 
-@app.route('/', methods=['GET'])
+@app.route('/landing', methods=['GET','POST'])
+@login_required
 def index():
     # Main page
     return render_template('index.html')

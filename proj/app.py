@@ -105,6 +105,14 @@ class LoginForm(FlaskForm):
 @app.route('/login',methods=['GET','POST'])
 def login():
     form=LoginForm()
+    if form.validate_on_submit():
+        user=User.query.filter_by(username=form.username.data).first()
+        if user:
+            if bcrypt.check_password_hash(user.password,form.password.data):
+                login_user(user)
+                return redirect(url_for('index'))
+
+
     return render_template('login.html',form=form)
 
 
@@ -123,7 +131,7 @@ def signup():
     return render_template('signup.html',form=form)
 
 
-@app.route('/landing', methods=['GET','POST'])
+@app.route('/index', methods=['GET','POST'])
 @login_required
 def index():
     # Main page

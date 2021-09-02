@@ -5,7 +5,7 @@ import sys
 # Flask
 from flask import Flask, request, render_template, Response, jsonify, url_for,redirect
 from flask_sqlalchemy import SQLAlchemy 
-from flask_login import UserMixin
+from flask_login import UserMixin, login_manager,login_user,login_required,LoginManager,logout_user,current_user
 from flask_wtf import FlaskForm
 from flask_wtf.recaptcha import validators
 from wtforms import StringField,PasswordField,SubmitField
@@ -38,6 +38,16 @@ app.config['SQLALCHEMY_DATABASE_URI']='sqlite:///database.db'
 #secret key for security of session cookie
 app.config['SECRET_KEY']='secret'
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
+
+
+login_manager=LoginManager()
+login_manager.init_app(app)
+login_manager.login_view="login"
+
+@login_manager.user_loader
+def load_user(user_id):
+    return User.query.get(int(user_id))
+
 
 #print('Model loaded. Check http://127.0.0.1:5000/')
 

@@ -138,6 +138,14 @@ def index():
     return render_template('index.html')
 
 
+@app.route('/logout', methods=['GET','POST'])
+@login_required
+def logout():
+    logout_user()
+    return redirect(url_for('login'))
+
+
+
 @app.route('/predict', methods=['GET', 'POST'])
 def predict():
     if request.method == 'POST':

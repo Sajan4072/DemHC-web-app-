@@ -102,6 +102,14 @@ class LoginForm(FlaskForm):
 
 
 
+@app.route('/article')
+def article():
+    return render_template('article.html')
+
+@app.route('/post')
+def post():
+    return render_template('post.html')
+
 @app.route('/login',methods=['GET','POST'])
 def login():
     form=LoginForm()

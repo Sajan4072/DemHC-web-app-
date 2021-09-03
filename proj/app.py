@@ -178,6 +178,11 @@ def index():
     # Main page
     return render_template('index.html')
 
+@app.route('/about')
+@login_required
+def about():
+    return render_template('about.html')
+
 
 @app.route('/logout', methods=['GET','POST'])
 @login_required

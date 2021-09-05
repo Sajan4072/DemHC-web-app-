@@ -109,20 +109,20 @@ class LoginForm(FlaskForm):
 
 
 
-@app.route('/article')
+@app.route('/article',methods=['GET','POST'])
 @login_required
 def article():
     posts = Blogpost.query.order_by(Blogpost.date_posted.desc()).all()
     return render_template('article.html',posts=posts)
 
-@app.route('/post/<int:post_id>')
+@app.route('/post/<int:post_id>',methods=['GET','POST'])
 @login_required
 def post(post_id):
     post = Blogpost.query.filter_by(id=post_id).one()
     return render_template('post.html',post=post)
 
 
-@app.route('/add')
+@app.route('/add',methods=['GET','POST'])
 @login_required
 def add():
     return render_template('add.html')
@@ -178,9 +178,11 @@ def index():
     # Main page
     return render_template('index.html')
 
-@app.route('/about')
+@app.route('/about',methods=['GET','POST'])
 @login_required
 def about():
+    
+
     return render_template('about.html')
 
 

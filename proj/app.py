@@ -217,7 +217,7 @@ def predict():
         print(result)
         
         if result >0.5:
-            return jsonify(result="PNEMONIA")
+            return jsonify(result="PNEUMONIA")
         else:
             return jsonify(result="NORMAL")
 
